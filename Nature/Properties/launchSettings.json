@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Nature": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\sasch\\Desktop\\Projekt\\altv-server.exe",
+      "workingDirectory": "C:\\Users\\sasch\\Desktop\\Projekt\\"
+    }
+  }
+}
