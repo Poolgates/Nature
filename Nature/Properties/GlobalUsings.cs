@@ -13,5 +13,11 @@ global using AltV.Net.EntitySync.SpatialPartitions;
 global using Nature.Factory.ClassicPlayer;
 global using Nature.Models;
 global using Nature.Services;
+global using Nature.model;
 
 global using AltV.Net.ColoredConsole;
+
+global using Microsoft.EntityFrameworkCore;
+global using System.Collections.Generic;
+global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
