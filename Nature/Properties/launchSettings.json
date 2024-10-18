@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "Nature": {
-      "commandName": "Executable",
-      "executablePath": "D:\\AltvServer\\altv-server.exe",
-      "workingDirectory": "D:\\AltVServer"
-    }
-  }
-}
