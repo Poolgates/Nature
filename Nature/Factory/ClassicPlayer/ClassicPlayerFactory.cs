@@ -1,15 +1,20 @@
-﻿using AltV.Net;
-using AltV.Net.Elements.Entities;
-using Nature.Contracts;
-using Nature.Models;
-
-namespace Nature.Factory.ClassicPlayer
+﻿namespace Nature.Factory.ClassicPlayer
 {
-    internal class ClassicPlayerFactory : IEntityFactory<IPlayer>
+
+    interface IClassicPlayerFactory
     {
+        ClassicPlayer GetClassicplayer();
+    }
+
+
+    public class ClassicPlayerFactory : IEntityFactory<IPlayer>
+    {
+  
+
         public IPlayer Create(ICore core, nint entityPointer, uint id)
-        {   
-            return new ClassicPlayer(core, entityPointer, id);
+        {
+            return new ClassicPlayer (core, entityPointer, id);
         }
+
     }
 }

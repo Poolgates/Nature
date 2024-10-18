@@ -1,11 +1,4 @@
-﻿using AltV.Net;
-using AltV.Net.ColoredConsole;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace Nature.Services
+﻿namespace Nature.Services
 {
     public class ConsolePrint
     {

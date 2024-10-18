@@ -1,10 +1,4 @@
-﻿using AltV.Net;
-using AltV.Net.Async;
-using AltV.Net.Client.Elements.Factories;
-using AltV.Net.ColoredConsole;
-using System.Globalization;
-using System.Text.Encodings.Web;
-
+﻿using AltV.Net.Async;
 
 namespace Nature.Services
 {
@@ -13,9 +7,12 @@ namespace Nature.Services
         public static void LoadServerConfig()
         {
             string tomlName = "server.toml";
+            string path = @"D:\AltVServer";
 
-            string configFile = Path.Combine(Alt.Core.RootDirectory, tomlName);
-           
+            // string configFile = Path.Combine(Alt.RootDirectory, tomlName);
+            string configFile = Path.Combine(path, tomlName);
+
+
             if (File.Exists(configFile))
             {
 

@@ -1,8 +1,4 @@
-﻿using AltV.Net.EntitySync;
-using AltV.Net.EntitySync.ServerEvent;
-using AltV.Net.EntitySync.SpatialPartitions;
-
-namespace Nature.Services
+﻿namespace Nature.Services
 {
     public class ServerEntitySync
     {
@@ -10,7 +6,7 @@ namespace Nature.Services
         {
            AltEntitySync.Init(7, (threadId) => 200, (threadId) => false, 
               (threadCount, repository) => new ServerEventNetworkLayer(threadCount, repository),
-              (entity, threadCount) => entity.Type, (entityId, entityType, threadCount) => entityType,
+              (entity, threadCount) => (entity.Id % threadCount), (entityId, entityType, threadCount) => (entityId % threadCount),
               (threadId) =>
               {
                   return threadId switch

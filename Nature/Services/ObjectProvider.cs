@@ -1,23 +1,69 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Nature.Contracts;
-using Nature.Factory.ClassicPlayer;
-using Nature.Models;
-
-namespace Nature.Services
+﻿namespace Nature.Services
 {
-    internal class ObjectProvider
+    public class ObjectProvider
     {
-        public static void CreateObjects()
+       
+    }
+
+    //base interface
+    interface IPizza   // IClassicPlayer
+    {
+        string GetPizzaType();
+    }
+
+    // concrete implementation
+    public class Pizza : IPizza   // ClassicPlayer : IClassicPlayer
+    {
+        public string GetPizzaType()
         {
-            IServiceCollection collection = new ServiceCollection();
-            // collection.AddTransient<IClassicPlayerFactory, ClassicPlayerFactory>();
-            collection.AddTransient<IClassicPlayer, ClassicPlayer>();
-            collection.AddTransient<ICharacter, Character>();
-           
-           
-           IServiceProvider provider = collection.BuildServiceProvider();
-           Character character = provider.GetService<Character>()!;
-           character.CreateNewCharacter("Sotti", 0);
+            return "Pizza Type: Margherita";
         }
     }
+    
+    // base decorator                      
+    class PizzaDecorator : IPizza   // ClassicPlayerDecorator : IClassicPlayer
+    {
+        protected IPizza _pizza;
+        public PizzaDecorator(IPizza pizza)
+        {
+            _pizza = pizza;
+        }
+        public virtual string GetPizzaType()
+        {
+            return _pizza.GetPizzaType();
+        }
+    }
+
+    // concrete decorator
+    class CheeseDecorator : PizzaDecorator   // Character : IClassicPlayer
+    {
+        public CheeseDecorator(IPizza pizza) : base(pizza)
+        {
+        }
+
+        public override string GetPizzaType()
+        {
+            string type = base.GetPizzaType();
+            type += "\n extra Cheese added";
+            return type;
+        }
+    }
+
+    class OnieonDecorator : PizzaDecorator
+    {
+        public OnieonDecorator(IPizza pizza) : base(pizza)
+        {
+        }
+
+        public override string GetPizzaType()
+        {
+            string type = base.GetPizzaType();
+            type += "\n extra Onieon added";
+            return type;
+        }
+    }
+
+   
+
+
 }

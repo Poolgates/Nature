@@ -1,10 +1,4 @@
-﻿using AltV.Net;
-using AltV.Net.Async;
-using AltV.Net.Client.Elements.Entities;
-using AltV.Net.Elements.Entities;
-using Nature.Contracts;
-using Nature.Factory.ClassicPlayer;
-using Nature.Models;
+﻿using AltV.Net.Async;
 
 namespace Nature
 {
@@ -14,9 +8,8 @@ namespace Nature
         {
             Alt.Log("Der Server wurde gestartet!");
             Services.ServerConfig.LoadServerConfig();
-            
             GetPlayerFactory();
-            Services.ObjectProvider.CreateObjects();
+            Services.ServerEntitySync.LoadEntitySync();
         }
 
         public override void OnStop()
@@ -27,6 +20,6 @@ namespace Nature
         public override IEntityFactory<IPlayer> GetPlayerFactory()
         {
             return new ClassicPlayerFactory();
-        }   
+        }
     }
 }

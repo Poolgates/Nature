@@ -1,6 +1,4 @@
-﻿using Nature.Factory.ClassicPlayer;
-
-namespace Nature.Services
+﻿namespace Nature.Services
 {
     public class CheckObjects
     {     

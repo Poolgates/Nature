@@ -1,53 +1,46 @@
 ﻿using AltV.Net;
-using Nature.Contracts;
 using Nature.Factory.ClassicPlayer;
 
 
 namespace Nature.Models
 {
-    public class Character : IScript, ICharacter
+    public class Character : ClassicPlayerDecorator, IScript
     {
-        private readonly List<Character> characters = new();
+        // Gentype
+        enum GenderType
+        {
+            Nothing = 0,
+            Man = 1,
+            Wife = 2
+        }
 
-        // Klassenvariable
-        private readonly IClassicPlayer? _player;
-
-        // Eigenschaften
-        public string CharName { get; set; } = String.Empty;
-        public int Gender { get; set; }
+        // Klassenvariablen
+        protected string _name = string.Empty;
+        protected int _gender = (int)GenderType.Nothing;
 
         // Konstruktor
-        public Character() {}
-
-        public Character(string charname, int gender)
+        public Character(IClassicPlayer player) : base(player)
         {
-            this.CharName = charname;
-            this.Gender = gender;
+        }
+      
+        public override ClassicPlayer GetClassicPlayer()
+        {
+            return _classicPlayer.GetClassicPlayer();
         }
 
-        public Character(IClassicPlayer player)
+        // Eigenschaften
+        public string CharName
         {
-            _player = player;         
+            get { return _name; }
+            set { _name = value; }
         }
 
-        // Objectverweis
-        public Character GetPlayerCharakter()
+        public int Gender
         {
-            Character player = new(_player!);
-            
-            return player;
+            get { return _gender; }
+            set { _gender = value; }
         }
 
-        // Methoden
-        public void CreateNewCharacter(string charname, int gender) 
-        {
-            characters.Add(new Character(charname, gender));
-              
-            foreach (Character character in characters) 
-            {
-                Services.ConsolePrint.ConsoleColorMessage(4, character.CharName.ToString()!);
-                Services.ConsolePrint.ConsoleColorMessage(4, character.Gender.ToString()!);
-            }         
-        }
+      
     }
 }
