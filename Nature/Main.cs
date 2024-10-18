@@ -1,0 +1,25 @@
+﻿using AltV.Net.Async;
+
+namespace Nature
+{
+    public class Main : AsyncResource
+    {
+        public override void OnStart()
+        {
+            Alt.Log("Der Server wurde gestartet!");
+            Services.ServerConfig.LoadServerConfig();
+            GetPlayerFactory();
+            Services.ServerEntitySync.LoadEntitySync();
+        }
+
+        public override void OnStop()
+        {
+            Alt.Log("Server ist gestoppt.");
+        }
+
+        public override IEntityFactory<IPlayer> GetPlayerFactory()
+        {
+            return new ClassicPlayerFactory();
+        }
+    }
+}

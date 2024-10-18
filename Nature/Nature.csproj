@@ -1,0 +1,112 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+
+	  <PackageId>$(AssemblyName)</PackageId>
+	  <Version>1.0.0</Version>
+	  <Authors>Sascha Sopora</Authors>
+	  
+	  
+	<!-- Ersetzen Sie CSXXXX und CSYYYY durch die spezifischen Warncodes -->
+	<NoWarn>IDE0290,   <!-- Konstruktor kann vereinfacht werden  -->
+	        IDE0090    <!-- new-Ausdruck kann vereinfacht werden  -->
+    </NoWarn>
+
+	  <!-- Framework -->
+	  <TargetFramework>net8.0</TargetFramework>
+
+	  <!-- Ausgabe wird als Bibliothek gespeichert -->
+	  <OutputType>Library</OutputType>
+
+	  <!-- Globale usings verwenden - Properties/GlobalUsings.cs -->
+	  <ImplicitUsings>enable</ImplicitUsings>
+
+	  
+	  <!-- Soll die NuGet assemblies auch im Debug/Release Ordner kopiert werden -->
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+
+		<!-- Soll der Unterordner in Dubug/Release einen FrameworkMoniker (Ordner) namens .net6.0 / .net8.0 haben -->
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+
+	  <!-- Soll der Unterordner in Dubug/Release einen FrameworkMoniker (Ordner) namens .net6.0 / .net8.0 haben -->
+	  
+	  <!-- Soll der Nullable-Anmerkungstext und Warntext angezeigt werden -->
+	  <Nullable>enable</Nullable>
+
+	  <!-- Soll der Compiler die Arbeit optimieren -->
+	  <Optimization>true</Optimization>
+
+	  <!-- Soll der Code nach dem Building durch Verschleierung geschüzt werden. -->
+	  <Obfuscate>true</Obfuscate>
+
+	  <!-- Gibt den StandardPfad an, wo das Build gespeichert wird -->
+	  <BaseOutputPath>D:\AltvServer\resources\server\</BaseOutputPath>
+	  
+	  
+ 
+  </PropertyGroup>
+
+
+	<!-- Gibt den Pfad an, wo das Debug-Build gespeichert wird -->
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug'">
+		<OutputPath>$(OutputPath)\debug\</OutputPath>
+	</PropertyGroup>
+
+	<!-- Gibt den Pfad an, wo das Release-Build gespeichert wird -->
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release'">
+		<OutputPath>$(OutputPath)\release\</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <Optimize>True</Optimize>
+	</PropertyGroup>
+
+
+	<!-- Installierte Nuget-Pakete -->
+  <ItemGroup>
+    <PackageReference Include="AltV.Net" Version="16.4.0" />
+    <PackageReference Include="AltV.Net.Async" Version="16.4.0" />
+    <PackageReference Include="AltV.Net.Async.CodeGen" Version="16.4.0" />
+    <PackageReference Include="AltV.Net.CApi" Version="16.4.0" />
+    <PackageReference Include="AltV.Net.Client" Version="16.4.0" />
+    <PackageReference Include="AltV.Net.Client.Async" Version="16.4.0" />
+    <PackageReference Include="AltV.Net.ColShape" Version="16.4.0" />
+    <PackageReference Include="AltV.Net.EntitySync" Version="1.18.0" />
+    <PackageReference Include="AltV.Net.EntitySync.ServerEvent" Version="16.4.0" />
+    <PackageReference Include="AltV.Net.Interactions" Version="16.4.0" />
+    <PackageReference Include="AltV.Net.Resources.Chat.Api" Version="16.4.0" />
+    <PackageReference Include="AltV.Net.Shared" Version="16.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+  </ItemGroup>
+
+
+	<!-- Sicherheitsdateien gespeichert -->
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+	
+	
+	
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Update="config.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="resource.toml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
+</Project>
