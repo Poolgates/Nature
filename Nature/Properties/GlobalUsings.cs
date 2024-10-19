@@ -15,6 +15,7 @@ global using Nature.Models;
 global using Nature.Services;
 global using Nature.model;
 
+
 global using AltV.Net.ColoredConsole;
 
 global using Microsoft.EntityFrameworkCore;

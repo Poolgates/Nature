@@ -1,13 +1,25 @@
 ﻿using AltV.Net;
 using Nature.Factory.ClassicPlayer;
+using static Nature.Models.Character;
 
 
 namespace Nature.Models
 {
-    public class Character : ClassicPlayerDecorator, IScript
+    public interface ICharacter
+    {
+        string CharName { get; set; }
+        int Gender { get; set; }
+
+        void GetPlayerGender(int gender);
+        void GetPlayerCharName(string charName);
+    }
+
+
+
+    public class Character : IScript, ICharacter
     {
         // Gentype
-        enum GenderType
+        public enum GenderType
         {
             Nothing = 0,
             Man = 1,
@@ -15,32 +27,29 @@ namespace Nature.Models
         }
 
         // Klassenvariablen
-        protected string _name = string.Empty;
+        protected string _charNname = string.Empty;
         protected int _gender = (int)GenderType.Nothing;
 
         // Konstruktor
-        public Character(IClassicPlayer player) : base(player)
+        public Character(string charName, int gender)
         {
-        }
-      
-        public override ClassicPlayer GetClassicPlayer()
-        {
-            return _classicPlayer.GetClassicPlayer();
+            CharName = charName;
+            Gender = gender;
         }
 
         // Eigenschaften
-        public string CharName
+        public string CharName { get; set; }
+        public int Gender { get; set; }
+
+        public void GetPlayerGender(int gender)
         {
-            get { return _name; }
-            set { _name = value; }
+            GenderType _gender = (GenderType)gender;
+            Gender = gender;
         }
 
-        public int Gender
+        public void GetPlayerCharName(string charName)
         {
-            get { return _gender; }
-            set { _gender = value; }
+            CharName = charName;
         }
-
-      
     }
 }

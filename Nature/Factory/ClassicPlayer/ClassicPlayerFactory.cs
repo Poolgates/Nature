@@ -9,12 +9,12 @@
 
     public class ClassicPlayerFactory : IEntityFactory<IPlayer>
     {
-  
-
         public IPlayer Create(ICore core, nint entityPointer, uint id)
         {
-            return new ClassicPlayer (core, entityPointer, id);
-        }
+           
+            Character character = new Character("", (int)Character.GenderType.Nothing);
 
+            return new ClassicPlayer(core, entityPointer, id, character);
+        }
     }
 }

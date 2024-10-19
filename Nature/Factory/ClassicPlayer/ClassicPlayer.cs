@@ -9,19 +9,23 @@ namespace Nature.Factory.ClassicPlayer
         protected ICore _core;
         protected nint _nativePointer;
         protected uint _id;
+        public ICharacter _character;
 
         // Constructors
-        public ClassicPlayer(ICore core, nint nativePointer, uint id) : base(core, nativePointer, id)
+        public ClassicPlayer(ICore core, nint nativePointer, uint id, ICharacter character) : base(core, nativePointer, id)
         {
             _core = core;
             _nativePointer = nativePointer;
             _id = id;
+            _character = character;
         }
 
         public ClassicPlayer GetClassicPlayer()
         {
-            return new ClassicPlayer(_core, _nativePointer, _id);
+            return new ClassicPlayer(_core, _nativePointer, _id, _character);
         }
+
+      
 
         ClassicPlayer IAsyncConvertible<ClassicPlayer>.ToAsync(IAsyncContext _) => this;
     }
