@@ -1,4 +1,8 @@
-﻿namespace Nature.Database
+﻿
+
+using Nature.Models.CharacterHandler;
+
+namespace Nature.Database
 {
     public class MyDBContext : DbContext
     {
@@ -9,6 +13,7 @@
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }
 
-        public DbSet<Accounts> Account { get; set; }
+        public DbSet<Account> Account { get; set; }
+        public DbSet<Character> Character { get; set; }
     }
 }

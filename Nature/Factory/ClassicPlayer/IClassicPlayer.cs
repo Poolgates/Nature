@@ -3,6 +3,7 @@
     public interface IClassicPlayer
     {
         ClassicPlayer GetClassicPlayer();
+        
 
     }
 }

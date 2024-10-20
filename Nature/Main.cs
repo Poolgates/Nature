@@ -1,4 +1,5 @@
 ﻿using AltV.Net.Async;
+using System.Reflection;
 
 namespace Nature
 {
@@ -8,8 +9,14 @@ namespace Nature
         {
             Alt.Log("Der Server wurde gestartet!");
             Services.ServerConfig.LoadServerConfig();
+
+            Database.DatabaseHandler.LoadAllPlayerAccounts();
+            Database.DatabaseHandler.LoadAllPlayerCharacters();
+
             GetPlayerFactory();
             Services.ServerEntitySync.LoadEntitySync();
+            
+
         }
 
         public override void OnStop()

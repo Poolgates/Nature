@@ -13,7 +13,8 @@ global using AltV.Net.EntitySync.SpatialPartitions;
 global using Nature.Factory.ClassicPlayer;
 global using Nature.Models;
 global using Nature.Services;
-global using Nature.model;
+global using Nature.Models.AccountHandler;
+global using Nature.Models.CharacterHandler;
 
 
 global using AltV.Net.ColoredConsole;
