@@ -1,5 +1,4 @@
 ﻿using AltV.Net.Async;
-using System.Reflection;
 
 namespace Nature
 {
@@ -15,8 +14,8 @@ namespace Nature
 
             GetPlayerFactory();
             Services.ServerEntitySync.LoadEntitySync();
-            
 
+          
         }
 
         public override void OnStop()

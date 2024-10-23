@@ -1,4 +1,6 @@
-﻿namespace Nature.Services
+﻿using Microsoft.CodeAnalysis.Text;
+
+namespace Nature.Services
 {
     public class ConsolePrint
     {
@@ -78,7 +80,97 @@
                 }
 
             }
+        }
 
+        public static void ConsoleColorMessageMulti(int colorNumberOne, string messageOne, int colorNumberTwo, string messageTwo)
+        {
+            var AltvConsoleColorsOne = Enum
+                                    .GetValues(typeof(TextColor))
+                                    .Cast<TextColor>()
+                                    .Where(a => (int)a == colorNumberOne)
+                                    .Select(a => a.ToString())
+                                    .ToList();
+
+            var AltvConsoleColorsTwo = Enum
+                                   .GetValues(typeof(TextColor))
+                                   .Cast<TextColor>()
+                                   .Where(a => (int)a == colorNumberTwo)
+                                   .Select(a => a.ToString())
+                                   .ToList();
+
+            foreach (var consoleColor in AltvConsoleColorsOne)
+            {
+                ColoredMessage coloredMessageOne = new();
+                switch (consoleColor)
+                {
+                    case "Black":
+                        coloredMessageOne += TextColor.Black;
+                        break;
+                    case "Red":
+                        coloredMessageOne += TextColor.Red;
+                        break;
+                    case "Green":
+                        coloredMessageOne += TextColor.Green;
+                        break;
+                    case "Blue":
+                        coloredMessageOne += TextColor.Blue;
+                        break;
+                    case "Yellow":
+                        coloredMessageOne += TextColor.Yellow;
+                        break;
+                    case "Magenta":
+                        coloredMessageOne += TextColor.Magenta;
+                        break;
+                    case "Cyan":
+                        coloredMessageOne += TextColor.Cyan;
+                        break;
+                    case "White":
+                        coloredMessageOne += TextColor.White;
+                        break;
+                    default:
+                        Alt.LogError("Error: Die Farbe ist nicht vorhanden.");
+                        return;
+                }
+              
+
+                foreach (var consoleColorTwo in AltvConsoleColorsTwo)
+                {
+                    ColoredMessage coloredMessageTwo = new();
+                    switch (consoleColorTwo)
+                    {
+                        case "Black":
+                            coloredMessageTwo += TextColor.Black;
+                            break;
+                        case "Red":
+                            coloredMessageTwo += TextColor.Red;
+                            break;
+                        case "Green":
+                            coloredMessageTwo += TextColor.Green;
+                            break;
+                        case "Blue":
+                            coloredMessageTwo += TextColor.Blue;
+                            break;
+                        case "Yellow":
+                            coloredMessageTwo += TextColor.Yellow;
+                            break;
+                        case "Magenta":
+                            coloredMessageTwo += TextColor.Magenta;
+                            break;
+                        case "Cyan":
+                            coloredMessageTwo += TextColor.Cyan;
+                            break;
+                        case "White":
+                            coloredMessageTwo += TextColor.White;
+                            break;
+                        default:
+                            Alt.LogError("Error: Die Farbe ist nicht vorhanden.");
+                            return;
+                    }
+                    coloredMessageOne += messageOne;
+                    coloredMessageTwo += messageTwo;
+                    Alt.LogColored(coloredMessageOne.ToString() + coloredMessageTwo.ToString());
+                }
+            }
         }
     }
 }

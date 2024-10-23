@@ -1,4 +1,8 @@
-﻿namespace Nature.Database
+﻿using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
+
+namespace Nature.Database
 {
     public class DatabaseHandler
     {
@@ -8,11 +12,12 @@
             {
                 await using MyDBContext db = new MyDBContext();
                 ServicePropertyList._accountList = new List<Account>(db.Account);
-                Alt.Log($"{ServicePropertyList._accountList.Count} Accounts wurden geladen.");
+
+                ConsolePrint.ConsoleColorMessageMulti(2, $"{ServicePropertyList._accountList.Count}", 7, " Accounts wurden geladen");            
             }
             catch (Exception e)
             {
-                Alt.Log($"{e}");
+                Alt.LogError($"{typeof(DatabaseHandler).Name}.{MethodInfo.GetCurrentMethod()!.Name} zeigt Fehler: {e.Message} ");
             }
         }
 
@@ -22,11 +27,11 @@
             {
                 await using MyDBContext db = new MyDBContext();
                 ServicePropertyList._characterList = new List<Character>(db.Character);
-                Alt.Log($"{ServicePropertyList._characterList.Count} Charakter wurden geladen.");
+                ConsolePrint.ConsoleColorMessageMulti(2, $"{ServicePropertyList._characterList.Count}", 7, " Characters wurden geladen");
             }
             catch (Exception e)
             {
-                Alt.Log($"{e}");
+                Alt.LogError($"{typeof(DatabaseHandler).Name}.{MethodInfo.GetCurrentMethod()!.Name} zeigt Fehler: {e.Message} ");
             }
         }
     }
